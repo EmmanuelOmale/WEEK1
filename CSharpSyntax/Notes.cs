@@ -105,5 +105,18 @@ namespace Week1TestClass.CSharpSyntax
             //return default(int);
             return age;
         }
+
+
+        // Phase II 
+        // LINQ fundamentals and IEnumerable patterns
+
+        // What is LINQ?
+        // - Language Integrated Query (LINQ) is a powerful feature in C# that allows you to query collections in a concise and readable manner.
+        // - It provides a consistent way to work with data from different sources (like arrays, lists, databases, XML, etc.) using a unified syntax.
+
+        // Basic LINQ Operations:
+        // - Filtering: Using the 'where' clause to filter elements based on a condition.   
+        // - Projection: Using the 'select' clause to transform data into a new form.
+
     }
 }
