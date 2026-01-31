@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Threading.Tasks;
 
 namespace Week1TestClass.CSharpSyntax
@@ -23,5 +25,85 @@ namespace Week1TestClass.CSharpSyntax
         /// 4. Polymorphism:
         ///   - Ability to present the same interface for different underlying forms (data types).
         /// We have seen this in method overloading in the Car class with multiple Drive methods.
+        /// 
+        /// Generics:
+        /// - Allow you to define classes, interfaces, and methods with a placeholder for the data type.
+        /// 
+        /// Arrays vs Lists:
+        /// - Arrays have a fixed size, while Lists can dynamically resize.
+        /// - Lists provide more built-in methods for manipulation (like Add, Remove, etc.).
+        /// 
+        /// 
+
+        string name = "Samuel";
+        int age = 30;
+
+        int[] scoresArray = new int[] { 85, 90, 78 }; // Array
+
+        int[] scores = new int[5]; // Array with fixed size
+        //scores[0] = 85;
+
+        // Demonstrating an array method
+        public int[] GetScoresArray()
+        {
+            scores[0] = 85;
+            scores[1] = 90;
+            scores[2] = 78;
+            scores[3] = 95;
+            scores[4] = 88;
+
+            scores.Append(98);
+
+            scores[0] = 100;
+            return scores;
+        }
+
+        public List<int> ScoreList()
+        {
+            List<int> scoresList = new List<int> { 85, 90, 78 }; // List
+            scoresList.Add(95);
+            return scoresList;
+        }
+
+        public List<string> Names()
+        {
+            List<string> names = new List<string> { "Alice", "Bob", "Charlie" };
+            names.Add("Diana");
+            names.Remove("Bob");
+            return names;
+        }
+
+        // ArrayList vs List<T>:
+        // - ArrayList can hold items of any data type, while List<T> is strongly typed.
+        // - List<T> provides better performance and type safety.
+
+        // Demonstrating ArrayList
+        public ArrayList GetArrayList()
+        {
+            ArrayList arrayList = new ArrayList();
+            arrayList.Add(85);
+            arrayList.Add("Ninety");
+            arrayList.Add(78.5);
+            arrayList.Add(true);
+
+            arrayList[0] = 100;
+            arrayList.Remove("Ninety");
+            return arrayList;
+        }
+
+        // Demonstrating a generic method
+
+        public T GetDefaultValue<T>(T value)
+        {
+            return value;
+        }
+        // Demonstrating non-generic method
+        public int GetDefaultIntValue()
+        {
+            string name = "Samuel";
+            int age = 30;
+            //return default(int);
+            return age;
+        }
     }
 }

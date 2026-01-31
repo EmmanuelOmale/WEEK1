@@ -4,14 +4,15 @@ namespace Week1TestClass.CSharpSyntax
 {
     public partial class Car : SedanSUV, ICar
     {
-        public string FuelType { get; set; }
+        public FuelTypes FuelType { get; set; }
         public int FuelLiter { get; set; } //Integer (Primitive data type)
         public string Model { get; set; }
         // Take the Mileage as example of encapsulation
         private int Mileage { get; set; } = 0; //Integer (Primitive data type)
         public int DistanceTraveled { get; set; } //Integer (Primitive data type)
         public double AverageFuelConsumption { get; set; } // Double (Primitive data type)
-        public string ChangeFfuel
+        public CarDimensions Dimensions { get; set; } // Struct
+        public FuelTypes ChangeFfuel
         {
             get
             {
@@ -19,17 +20,23 @@ namespace Week1TestClass.CSharpSyntax
             }
             set
             {
-                FuelType = value.ToUpper();
+                FuelType = value;
             }
         }
 
-        public Car(string fuelType, int fuelLiter, string changeFfuel, string model, DateTime manufactureDate)
+        public Car(FuelTypes fuelType, 
+                   int fuelLiter, 
+                   FuelTypes changeFfuel, 
+                   string model, 
+                   DateTime manufactureDate,
+                   CarDimensions carDimentions)
         {
             FuelType = fuelType;
             FuelLiter = fuelLiter;
             ChangeFfuel = changeFfuel;
             ManufactureDate = manufactureDate;
             Model = model;
+            Dimensions = carDimentions;
         }
 
         public void Start() // Method
@@ -73,7 +80,7 @@ namespace Week1TestClass.CSharpSyntax
         // Boolean (Is also a primitive data type) it can be true or false
         public bool ActivateSystemControl(string direction)
         {
-            if (!string.IsNullOrEmpty(FuelType))
+            if (!string.IsNullOrEmpty(FuelType.ToString()))
             {
                 Console.WriteLine($"Here is the real value of fuel: {FuelType}, meaning the car can turn {direction}");
                 Turn(direction);
@@ -121,5 +128,39 @@ namespace Week1TestClass.CSharpSyntax
         }
 
         // Aruguments and parameters aka Signature or inputs 
+
+        // Demonstrating Enums 
+        public enum FuelTypes
+        {
+            Petrol,
+            Diesel,
+            Electric,
+            Hybrid
+        }
+
+        //Struct vs Class:
+        // - Structs are value types and are stored on the stack, while classes are reference types and are stored on the heap.
+        // - Structs do not support inheritance, while classes do.
+
+        // Demonstrating Struct
+
+        public struct CarDimensions
+        {
+            public double Length; // in meters
+            public double Width;  // in meters
+            public double Height; // in meters
+
+            public CarDimensions(double length, double width, double height)
+            {
+                Length = length;
+                Width = width;
+                Height = height;
+            }
+
+            public void DisplayDimensions()
+            {
+                Console.WriteLine($"Car Dimensions - Length: {Length}m, Width: {Width}m, Height: {Height}m");
+            }
+        }
     }
 }
